@@ -10004,3 +10004,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.custom-li {
+    background: white!important;
+    font-size: 20px;
+    border: #1a202c;
+    border-radius: 3px;
+    text-align: center;
+}
+
