@@ -10004,4 +10004,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+@media (max-width: 251px) {
+    #togglerNav {
+        width: 75%;
+        margin-right: auto;
+    }
+}
+
 
