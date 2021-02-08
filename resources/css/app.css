@@ -1,9 +1,13 @@
-@media (max-width: 251px) {
+@media (max-width: 360px) {
     #togglerNav {
         width: 60%;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
+    }
+    .navbar-dark .navbar-brand {
+        margin: auto;
+        padding-right: 5px;
     }
 }
 
@@ -16,13 +20,14 @@
     }
 }
 
-@media (min-width: 991px) {
-    .nav-item {
-        border-left: gray 0.1px solid;
-    }
-    .nav-item:last-child {
-        border-right: gray 0.1px solid;
-    }
+.navbar-expand-lg .navbar-collapse {
+    margin-left: 50px;
+    font-size: 18px;
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial;
 }
 
 

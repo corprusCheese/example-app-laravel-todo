@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Record;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class RecordFactory extends Factory
 {
@@ -19,10 +20,10 @@ class RecordFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'text' => $this->faker->text,
         ];
     }
 }

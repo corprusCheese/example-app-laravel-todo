@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class HomeController extends Controller
+class AboutController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -19,6 +19,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home');
+        return view('about');
     }
 }

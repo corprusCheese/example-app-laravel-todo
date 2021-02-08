@@ -13,6 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // так делать не надо
+        //(new UserSeeder())->run();
+        //(new RecordSeeder())->run();
+
+        // так вызывать
+        // php artisan db:seed --class=DatabaseSeeder
+
+        // переписать всю базу
+        // php artisan migrate:fresh --seed
+
+        $this->call([
+            UserSeeder::class,
+            RecordSeeder::class
+        ]);
     }
 }

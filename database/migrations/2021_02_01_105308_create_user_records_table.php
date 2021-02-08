@@ -14,9 +14,10 @@ class CreateUserRecordsTable extends Migration
     public function up()
     {
         Schema::create('user_records', function (Blueprint $table) {
-            $table->id('user_id')->index("user_idx");
-            $table->id('record_id')->index('record_idx');
+            $table->integer('user_id')->index("user_idx");
+            $table->integer('record_id')->index('record_idx');
             $table->timestamps();
+            $table->primary(array('user_id', 'record_id'));
         });
     }
 

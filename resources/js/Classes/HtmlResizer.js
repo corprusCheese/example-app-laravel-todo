@@ -1,25 +1,16 @@
 export class HtmlResizer {
 
     constructor() {
+        this.resizeWidth = 370;
     }
 
     resizeSmall (callbackLesser, callbackBigger) {
         $(window).resize(function () {
-                let widthWind = $(this).width();
-                if (widthWind <= 320) {
-                    callbackLesser()
-                } else {
-                    callbackBigger()
-                }
-            }
-        );
+            $(this).width() <= this.resizeWidth ? callbackLesser() : callbackBigger()
+        })
     }
 
     readySmall(callbackLesser, callbackBigger) {
-        if (window.innerWidth <= 320) {
-            callbackLesser()
-        } else {
-            callbackBigger()
-        }
+        window.innerWidth <= this.resizeWidth ? callbackLesser() : callbackBigger()
     }
 }

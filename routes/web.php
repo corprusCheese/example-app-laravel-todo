@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Invokable\AboutController;
+use App\Http\Controllers\Invokable\ApiPageController;
 use App\Http\Controllers\Invokable\HomeController;
+use App\Http\Controllers\Invokable\WelcomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name("home");
+Auth::routes();
 
-Route::get('/login', [LoginController::class, 'show'])->name("login");
+Route::get('/', WelcomeController::class)->name("welcome");
 
-Route::get('/register', [RegisterController::class, 'show'])->name("register");
+Route::get('/about', AboutController::class)->name("about");
+
+Route::get('/api', ApiPageController::class)->name("api");
+
+
+

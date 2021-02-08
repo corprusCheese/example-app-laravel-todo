@@ -1,8 +1,8 @@
 export class HtmlTemplates {
 
-    constructor() {
-    }
+    constructor() {}
 
+    // со значком ларавеля
     getBigHeaderSvg () {
         return "<svg viewBox=\"000 0 651 192\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
             "             class=\"h-16 w-auto text-gray-700\">" +
@@ -12,6 +12,7 @@ export class HtmlTemplates {
             "   </g></svg>"
     }
 
+    // без него
     getSmallHeaderSvg () {
         return "<svg viewBox=\"200 0 451 192\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
             "             class=\"h-16 w-auto text-gray-700\">" +
