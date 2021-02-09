@@ -26,7 +26,7 @@ Route::get('/', WelcomeController::class)->name("welcome");
 
 Route::get('/about', AboutController::class)->name("about");
 
-Route::get('/api', ApiPageController::class)->name("api");
+Route::get('/api/info', ApiPageController::class)->name("api");
 
-
+Route::get('/home', HomeController::class)->name('home');
 
