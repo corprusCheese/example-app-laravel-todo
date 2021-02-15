@@ -6,3 +6,30 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@media (max-width: 360px) {
+    #togglerNav {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+    }
+    .navbar-dark .navbar-brand {
+        margin: auto;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    .nav-item {
+        border-top: gray 0.1px solid;
+    }
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial;
+}

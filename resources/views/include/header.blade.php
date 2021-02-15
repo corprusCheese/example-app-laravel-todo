@@ -11,7 +11,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -50,6 +50,11 @@
                     <a class="nav-link" href={{route('api')}}>API</a>
                 </li>
             </ul>
+            <div class="input-group" style="width: auto; ">
+                <input type="search" class="form-control rounded" placeholder="Поиск" aria-label=""
+                       aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary">Поиск</button>
+            </div>
         </div>
     </div>
 </nav>

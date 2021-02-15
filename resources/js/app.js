@@ -13,3 +13,5 @@ require('./bootstrap');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
+require('./styles')

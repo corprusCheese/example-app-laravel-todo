@@ -1,23 +1,8 @@
-import {HtmlTemplates} from "./Classes/HtmlTemplates";
-import {HtmlResizer} from "./Classes/HtmlResizer";
+import {actions, beforeActions} from "./resize";
 
-let htmlResizer = new HtmlResizer()
-let htmlTemplates = new HtmlTemplates()
-let navbar = $('#icon-navbar');
+beforeActions()
+actions()
 
-// before actions
-htmlResizer.readySmall(() => {
-        navbar.html(htmlTemplates.getSmallHeaderSvg());
-    },
-    () => {
-        navbar.html(htmlTemplates.getBigHeaderSvg());
-    });
 
-// actions
-htmlResizer.resizeSmall(() => {
-        navbar.html(htmlTemplates.getSmallHeaderSvg());
-    },
-    () => {
-        navbar.html(htmlTemplates.getBigHeaderSvg());
-    })
+
 
