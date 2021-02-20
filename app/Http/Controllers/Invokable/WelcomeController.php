@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 
 class WelcomeController extends Controller
 {
@@ -19,6 +21,10 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        /*dd(Config::get("mail"));*/
+        /*Mail::send('welcome', [], function ($message) {
+            $message->to('example@gmail.com', 'example_name')->subject('Welcome!');
+        });*/
         return view('welcome');
     }
 }

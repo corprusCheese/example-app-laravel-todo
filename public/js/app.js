@@ -1976,6 +1976,7 @@ $("#clickSubmit").click(function () {
     };
 
     if (data['password'] == data['password_confirmation'] && data['password'] != "") {
+      document.getElementById('clickSubmit').setAttribute('disabled', "disabled");
       $.ajax({
         url: $("#clickSubmit").data('href'),
         type: "PUT",
@@ -1983,10 +1984,10 @@ $("#clickSubmit").click(function () {
         data: JSON.stringify(data),
         // access in body,
         success: function success() {
-          location.reload();
+          window.location = window.location.href.split("?")[0];
         },
         error: function error(_error) {
-          console.log(_error);
+          document.getElementById('clickSubmit').removeAttribute('disabled');
         }
       });
     }

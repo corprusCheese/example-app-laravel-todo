@@ -22,16 +22,17 @@ $("#clickSubmit").click(()=>{
         }
 
         if (data['password'] == data['password_confirmation'] && data['password'] != "") {
+            document.getElementById('clickSubmit').setAttribute('disabled', "disabled");
             $.ajax({
                 url: $("#clickSubmit").data('href'),
                 type: "PUT",
                 contentType: 'application/json',
                 data: JSON.stringify(data), // access in body,
                 success: function () {
-                    location.reload()
+                    window.location = window.location.href.split("?")[0];
                 },
                 error: function (error) {
-                    console.log(error)
+                    document.getElementById('clickSubmit').removeAttribute('disabled');
                 }
             })
         }

@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -13,7 +12,18 @@ return [
     |
     */
 
-    'layouts' => env('MAIL_MAILER', 'smtp'),
+    /*'layouts' => 'mailgun',
+    'driver' => 'mailgun',
+    'host' => 'smtp.mailgun.org',
+    'port' => '587',
+    'username' => "postmaster@sandbox647eb7d7dc27446d88134c47c4e8602f.mailgun.org",
+    'password' => "e7dcb1920d8e65ad2bf649c3fed5a285-d32d817f-ba11efe6",
+    'transport' => 'mailgun',
+    'secret' => "d32d817f-9d567a4f",
+    'domain' => 'sandbox647eb7d7dc27446d88134c47c4e8602f.mailgun.org',*/
+
+
+
 
     /*
     |--------------------------------------------------------------------------
