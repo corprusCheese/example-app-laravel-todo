@@ -10944,6 +10944,9 @@ a.text-dark:focus {
   }
 }
 
+/* my styles
+----------------------------------------------*/
+
 @media (max-width: 360px) {
   #togglerNav {
     width: 60%;
@@ -10968,9 +10971,52 @@ a.text-dark:focus {
   }
 }
 
+@media (max-width: 764px) {
+  .card-body {
+    text-align: center;
+  }
+}
+
+.card-header,
+.card {
+  /*border-color: lightblue;*/
+  border-radius: 20px;
+}
+
+.btn-primary {
+  background: white;
+  border-color: #3490dc;
+  color: #3490dc;
+}
+
+.container {
+  height: auto;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
+  margin-bottom: 60px;
+  /* Margin bottom by footer height */
   font-size: 16px;
   font-family: Arial;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* Set the fixed height of the footer here */
+  line-height: 60px;
+  /* Vertically center the text there */
+  background-color: #343a40 !important;
 }
 
 

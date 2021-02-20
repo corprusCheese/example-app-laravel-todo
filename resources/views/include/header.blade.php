@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 10%; padding-right: 10%">
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="padding-left: 10%; padding-right: 10%">
     <div style="display: contents">
         <a class="navbar-brand" id='icon-navbar' href={{route('welcome')}}>
             <svg viewBox="000 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700"><g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -31,6 +31,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('cabinet', ['id' => Auth::user()->id]) }}">
+                                {{ __('Личный кабинет') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

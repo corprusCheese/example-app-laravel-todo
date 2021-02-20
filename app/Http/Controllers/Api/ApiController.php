@@ -3,66 +3,41 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Services\AbstractService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 class ApiController extends Controller {
-    private $repository;
+    protected $repository;
+    protected $service;
 
-    public function __construct(BaseRepository $repository) {
+    public function __construct(BaseRepository $repository, AbstractService $service) {
         $this->repository = $repository;
+        $this->service = $service;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         // json что получает все у всех
-        return $this->repository->get();
+        return response()->json($this->repository->get());
     }
 
     public function store(Request $request): JsonResponse
     {
         // после создания положить в базу
-        return response()->json($this->repository->create($request->all()), 201);
+        return response()->json($this->service->create($request), 201);
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         // показать
-        return $this->repository->getById($id);
-    }
-
-    public function update(Request $request, $id): JsonResponse
-    {
-        // обновить
-        try {
-            $item = $this->repository->getById($id);
-            $item->update($request->all());
-        } catch (\Exception $e) {
-            $item = null;
-        } finally {
-            $result = null;
-            if ($item) {
-                $result = response()->json($item, 201);
-            } else {
-                $result = response()->json(null, 404);
-            }
-
-            return $result;
-        }
+        return response()->json($this->repository->getById($id));
     }
 
     public function delete($id): JsonResponse
     {
-        // удалить
-        try {
-            $item = $this->repository->getById($id);
-            $item->delete();
-            $result = response()->json(null, 204);
-        } catch (\Exception $e) {
-            $result = response()->json(null, 404);
-        } finally {
-            return $result;
-        }
+        return response()->json($this->service->delete($id));
     }
+
 }

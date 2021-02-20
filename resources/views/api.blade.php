@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="container mt-5 text-center">
+    <div class="text-center">
     API буду писать, когда напишу его..
     </div>
 @endsection
