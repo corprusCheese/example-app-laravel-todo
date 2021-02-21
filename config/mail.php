@@ -12,75 +12,15 @@ return [
     |
     */
 
-    /*'layouts' => 'mailgun',
-    'driver' => 'mailgun',
-    'host' => 'smtp.mailgun.org',
-    'port' => '587',
-    'username' => "postmaster@sandbox647eb7d7dc27446d88134c47c4e8602f.mailgun.org",
-    'password' => "e7dcb1920d8e65ad2bf649c3fed5a285-d32d817f-ba11efe6",
-    'transport' => 'mailgun',
-    'secret' => "d32d817f-9d567a4f",
-    'domain' => 'sandbox647eb7d7dc27446d88134c47c4e8602f.mailgun.org',*/
-
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Mailer Configurations
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure all of the mailers used by your application plus
-    | their respective settings. Several examples have been configured for
-    | you and you are free to add your own as your application requires.
-    |
-    | Laravel supports a variety of mail "transport" drivers to be used while
-    | sending an e-mail. You will specify which one you are using for your
-    | mailers below. You are free to add additional mailers as required.
-    |
-    | Supported: "smtp", "sendmail", "mailgun", "ses",
-    |            "postmark", "log", "array"
-    |
-    */
-
-    'mailers' => [
-        'smtp' => [
-            'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'auth_mode' => null,
-        ],
-
-        'ses' => [
-            'transport' => 'ses',
-        ],
-
-        'mailgun' => [
-            'transport' => 'mailgun',
-        ],
-
-        'postmark' => [
-            'transport' => 'postmark',
-        ],
-
-        'sendmail' => [
-            'transport' => 'sendmail',
-            'path' => '/usr/sbin/sendmail -bs',
-        ],
-
-        'log' => [
-            'transport' => 'log',
-            'channel' => env('MAIL_LOG_CHANNEL'),
-        ],
-
-        'array' => [
-            'transport' => 'array',
-        ],
-    ],
+    'layouts' => 'smtp',
+    'driver' => 'smtp',
+    'host' => env('MAIL_HOST', 'smtp.googlemail.com'),
+    'port' => env('MAIL_PORT', 465),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'username' => env('MAIL_USERNAME'),
+    'password' => env('MAIL_PASSWORD'),
+    'timeout' => null,
+    'auth_mode' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,26 +35,8 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'name' => env('MAIL_FROM_NAME', 'corprusCheese'),
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Markdown Mail Settings
-    |--------------------------------------------------------------------------
-    |
-    | If you are using Markdown based email rendering, you may configure your
-    | theme and component paths here, allowing you to customize the design
-    | of the emails. Or, you may simply stick with the Laravel defaults!
-    |
-    */
-
-    'markdown' => [
-        'theme' => 'layouts',
-
-        'paths' => [
-            resource_path('views/vendor/mail'),
-        ],
-    ],
 
 ];
