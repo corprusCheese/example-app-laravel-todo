@@ -26,4 +26,9 @@ class UserService extends AbstractService {
 
         return null;
     }
+
+    public function search(Request $request) {
+        $searchName = $request->all()['name'];
+        return $this->repository->where('name', "%".$searchName."%", 'LIKE')->get();
+    }
 }

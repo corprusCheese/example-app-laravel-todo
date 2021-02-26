@@ -17,7 +17,6 @@ use function PHPUnit\Framework\throwException;
 
 class UserController extends ApiController
 {
-
     public function update(UpdateUserRequest $request, $id)
     {
         return response()->json($this->service->update($request, $id), $this->service->update($request, $id)? 200 : 404);
@@ -26,5 +25,10 @@ class UserController extends ApiController
     public function store(Request $request): JsonResponse
     {
         parent::store($request);
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        return response()->json($this->service->search($request), $this->service->search($request)? 200 : 404);
     }
 }

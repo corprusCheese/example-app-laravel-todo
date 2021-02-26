@@ -31,4 +31,8 @@ abstract class AbstractService {
         } catch (\Exception $e) {
         }
     }
+
+    public function search(Request $request)
+    {
+    }
 }

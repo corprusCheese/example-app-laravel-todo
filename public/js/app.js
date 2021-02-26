@@ -1954,6 +1954,8 @@ function actions() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _resize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resize */ "./resources/js/resize.js");
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! url */ "./node_modules/url/url.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 (0,_resize__WEBPACK_IMPORTED_MODULE_0__.beforeActions)();
@@ -1970,7 +1972,8 @@ $("#clickSubmit").click(function (event) {
       "password": $("#password").val(),
       "password_confirmation": $("#password-confirm").val(),
       "email": $("#email").val(),
-      "description": $("#description").val()
+      "description": $("#description").val(),
+      "photo": _typeof($("#changePhoto").prop('files')[0].name) !== undefined ? $("#changePhoto").prop('files')[0].name : ""
     };
 
     if (data['password'] == data['password_confirmation'] && data['password'] != "") {
@@ -1982,6 +1985,7 @@ $("#clickSubmit").click(function (event) {
         data: JSON.stringify(data),
         // access in body,
         success: function success() {
+          loadImgToServer();
           window.location = window.location.href.split("?")[0];
         },
         error: function error(_error) {
@@ -1989,6 +1993,36 @@ $("#clickSubmit").click(function (event) {
         }
       });
     }
+  }
+});
+
+function loadImgToServer() {
+  var $input = $("#changePhoto");
+  var fd = new FormData();
+  fd.append('img', $input.prop('files')[0]);
+  $.ajax({
+    url: $("#changePhoto").data('href'),
+    data: fd,
+    processData: false,
+    contentType: false,
+    type: 'POST',
+    success: function success(data) {
+      console.log(data);
+    }
+  });
+}
+
+$("#changePhoto").change(function () {
+  var $input = $("#changePhoto");
+
+  if ($input.prop('files') && $input.prop('files')[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#photo').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL($input.prop('files')[0]);
   }
 });
 

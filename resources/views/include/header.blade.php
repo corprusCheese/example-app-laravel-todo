@@ -56,7 +56,9 @@
             <div class="input-group" style="width: auto; ">
                 <input type="search" class="form-control rounded" placeholder="Поиск" aria-label=""
                        aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">Поиск</button>
+                <a >
+                    <button  type="button" class="btn btn-outline-primary">Поиск</button>
+                </a>
             </div>
         </div>
     </div>

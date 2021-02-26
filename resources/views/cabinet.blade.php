@@ -16,9 +16,13 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Фото') }}</label>
 
                             <div class="col-md-6">
-                                <img src="{{ asset($cabinetUser->image)}}" width="200" height="200" id="photo">
+                                <img src="{{ asset($cabinetUser->photo?"storage/images/".$cabinetUser->photo:"storage/images/guest-user.jpg")}}" width="200" height="200" id="photo">
                             </div>
-                            <button style="margin: 10px auto auto;" class="btn btn-link">поменять фото</button>
+
+                            <label for="changePhoto" class="btn btn-link" style="margin: auto">
+                                Поменять картинку
+                            </label>
+                            <input id="changePhoto" data-href="{{route('uploadPhoto')}}" type="file"/>
                         </div>
 
                         <div class="form-group row">
