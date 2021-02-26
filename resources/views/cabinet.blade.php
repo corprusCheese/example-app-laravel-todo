@@ -13,10 +13,19 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Фото') }}</label>
+
+                            <div class="col-md-6">
+                                <img src="{{ asset($cabinetUser->image)}}" width="200" height="200" id="photo">
+                            </div>
+                            <button style="margin: 10px auto auto;" class="btn btn-link">поменять фото</button>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Имя') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" value="{{$cabinetUser->name}}"  disabled type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" value="{{$cabinetUser->name}}"  type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -30,9 +39,23 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" value="{{$cabinetUser->email}}" disabled type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" value="{{$cabinetUser->email}}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email">
 
                                 @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('О вас') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description">{{$cabinetUser->description}}</textarea>
+
+                                @error('description')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

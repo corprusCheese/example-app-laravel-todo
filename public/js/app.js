@@ -1958,21 +1958,19 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_resize__WEBPACK_IMPORTED_MODULE_0__.beforeActions)();
 (0,_resize__WEBPACK_IMPORTED_MODULE_0__.actions)();
-$("#clickSubmit").click(function () {
+$("#clickSubmit").click(function (event) {
   var form = document.getElementById('password-form');
 
   if (form.classList.contains('d-none')) {
     event.preventDefault();
     form.classList.remove('d-none');
-    document.getElementById('email').removeAttribute('disabled');
-    document.getElementById('name').removeAttribute('disabled');
   } else {
-    console.log($("#clickSubmit").data('href'));
     var data = {
       "name": $("#name").val(),
       "password": $("#password").val(),
       "password_confirmation": $("#password-confirm").val(),
-      "email": $("#email").val()
+      "email": $("#email").val(),
+      "description": $("#description").val()
     };
 
     if (data['password'] == data['password_confirmation'] && data['password'] != "") {

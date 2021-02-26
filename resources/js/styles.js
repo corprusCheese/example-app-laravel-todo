@@ -4,21 +4,18 @@ import * as url from "url";
 beforeActions()
 actions()
 
-$("#clickSubmit").click(()=>{
+$("#clickSubmit").click((event)=>{
     let form = document.getElementById('password-form')
     if (form.classList.contains('d-none')) {
         event.preventDefault()
         form.classList.remove('d-none');
-        document.getElementById('email').removeAttribute('disabled');
-        document.getElementById('name').removeAttribute('disabled');
     } else {
-        console.log($("#clickSubmit").data('href'))
-
         let data = {
             "name": $("#name").val(),
             "password": $("#password").val(),
             "password_confirmation": $("#password-confirm").val(),
-            "email": $("#email").val()
+            "email": $("#email").val(),
+            "description": $("#description").val()
         }
 
         if (data['password'] == data['password_confirmation'] && data['password'] != "") {
