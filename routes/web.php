@@ -8,6 +8,7 @@ use App\Http\Controllers\Invokable\CabinetController;
 use App\Http\Controllers\Invokable\HomeController;
 use App\Http\Controllers\Invokable\SearchController;
 use App\Http\Controllers\Invokable\WelcomeController;
+use App\Http\Controllers\RecordsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,11 @@ Route::get('/info', ApiPageController::class)->name("api");
 Route::get('/search', SearchController::class)->name("search");
 
 Route::get('/home', HomeController::class)->name('home');
+
+Route::get('/records', [RecordsController::class, 'index'])->name('records');
+
+Route::get('/records/create', [RecordsController::class, 'create'])->name('records.create');
+
 
 Route::get("/user/{id}/cabinet", CabinetController::class)
     ->name('cabinet')

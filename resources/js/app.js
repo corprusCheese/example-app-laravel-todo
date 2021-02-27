@@ -6,5 +6,9 @@
 
 require('./bootstrap');
 
+// кроссадаптивный жс
 require('./styles')
+
+// события и аякс запросы к серверу
+require('./data')
 

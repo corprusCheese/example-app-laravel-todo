@@ -1845,9 +1845,13 @@ module.exports = {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // кроссадаптивный жс
 
-__webpack_require__(/*! ./styles */ "./resources/js/styles.js");
+
+__webpack_require__(/*! ./styles */ "./resources/js/styles.js"); // события и аякс запросы к серверу
+
+
+__webpack_require__(/*! ./data */ "./resources/js/data.js");
 
 /***/ }),
 
@@ -1892,6 +1896,98 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/data.js":
+/*!******************************!*\
+  !*** ./resources/js/data.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions */ "./resources/js/functions.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+$("#clickSubmit").click(function (event) {
+  var form = document.getElementById('password-form');
+
+  if (form.classList.contains('d-none')) {
+    event.preventDefault();
+    form.classList.remove('d-none');
+  } else {
+    var data = {
+      "name": $("#name").val(),
+      "password": $("#password").val(),
+      "password_confirmation": $("#password-confirm").val(),
+      "email": $("#email").val(),
+      "description": $("#description").val(),
+      "photo": _typeof($("#changePhoto").prop('files')[0].name) !== undefined ? $("#changePhoto").prop('files')[0].name : ""
+    };
+
+    if (data['password'] == data['password_confirmation'] && data['password'] != "") {
+      document.getElementById('clickSubmit').setAttribute('disabled', "disabled");
+      $.ajax({
+        url: $("#clickSubmit").data('href'),
+        type: "PUT",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        // access in body,
+        success: function success() {
+          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.loadImgToServer)();
+          window.location = window.location.href.split("?")[0];
+        },
+        error: function error(_error) {
+          document.getElementById('clickSubmit').removeAttribute('disabled');
+        }
+      });
+    }
+  }
+});
+$("#changePhoto").change(function () {
+  var $input = $("#changePhoto");
+
+  if ($input.prop('files') && $input.prop('files')[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#photo').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL($input.prop('files')[0]);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/functions.js":
+/*!***********************************!*\
+  !*** ./resources/js/functions.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "loadImgToServer": () => /* binding */ loadImgToServer
+/* harmony export */ });
+function loadImgToServer() {
+  var $input = $("#changePhoto");
+  var fd = new FormData();
+  fd.append('img', $input.prop('files')[0]);
+  $.ajax({
+    url: $("#changePhoto").data('href'),
+    data: fd,
+    processData: false,
+    contentType: false,
+    type: 'POST',
+    success: function success(data) {
+      console.log(data);
+    }
+  });
+}
 
 /***/ }),
 
@@ -1954,77 +2050,10 @@ function actions() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _resize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resize */ "./resources/js/resize.js");
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! url */ "./node_modules/url/url.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 
 (0,_resize__WEBPACK_IMPORTED_MODULE_0__.beforeActions)();
 (0,_resize__WEBPACK_IMPORTED_MODULE_0__.actions)();
-$("#clickSubmit").click(function (event) {
-  var form = document.getElementById('password-form');
-
-  if (form.classList.contains('d-none')) {
-    event.preventDefault();
-    form.classList.remove('d-none');
-  } else {
-    var data = {
-      "name": $("#name").val(),
-      "password": $("#password").val(),
-      "password_confirmation": $("#password-confirm").val(),
-      "email": $("#email").val(),
-      "description": $("#description").val(),
-      "photo": _typeof($("#changePhoto").prop('files')[0].name) !== undefined ? $("#changePhoto").prop('files')[0].name : ""
-    };
-
-    if (data['password'] == data['password_confirmation'] && data['password'] != "") {
-      document.getElementById('clickSubmit').setAttribute('disabled', "disabled");
-      $.ajax({
-        url: $("#clickSubmit").data('href'),
-        type: "PUT",
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        // access in body,
-        success: function success() {
-          loadImgToServer();
-          window.location = window.location.href.split("?")[0];
-        },
-        error: function error(_error) {
-          document.getElementById('clickSubmit').removeAttribute('disabled');
-        }
-      });
-    }
-  }
-});
-
-function loadImgToServer() {
-  var $input = $("#changePhoto");
-  var fd = new FormData();
-  fd.append('img', $input.prop('files')[0]);
-  $.ajax({
-    url: $("#changePhoto").data('href'),
-    data: fd,
-    processData: false,
-    contentType: false,
-    type: 'POST',
-    success: function success(data) {
-      console.log(data);
-    }
-  });
-}
-
-$("#changePhoto").change(function () {
-  var $input = $("#changePhoto");
-
-  if ($input.prop('files') && $input.prop('files')[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#photo').attr('src', e.target.result);
-    };
-
-    reader.readAsDataURL($input.prop('files')[0]);
-  }
-});
 
 /***/ }),
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Repositories\RecordRepository;
 use App\Repositories\UserRepository;
 use App\Services\AbstractService;
+use App\Services\RecordService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
@@ -27,14 +28,9 @@ class RepositoryServiceProvider extends ServiceProvider
             ->give(UserRepository::class);
 
         //
-        $this->app->when(RecordController::class)
+        $this->app->when([RecordController::class, RecordService::class])
             ->needs(BaseRepository::class)
             ->give(RecordRepository::class);
-
-        //
-        $this->app->when([UserController::class, RegisterController::class])
-            ->needs(AbstractService::class)
-            ->give(UserService::class);
     }
 
     /**

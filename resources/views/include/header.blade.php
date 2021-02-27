@@ -53,13 +53,14 @@
                     <a class="nav-link" href={{route('api')}}>API</a>
                 </li>
             </ul>
+            <form action="{{route('search')}}">
             <div class="input-group" style="width: auto; ">
-                <input type="search" class="form-control rounded" placeholder="Поиск" aria-label=""
+                <input type="search" class="form-control rounded" placeholder="Поиск" aria-label="" name="name"
                        aria-describedby="search-addon" />
-                <a >
-                    <button  type="button" class="btn btn-outline-primary">Поиск</button>
-                </a>
+
+                    <button  type="submit" class="btn btn-outline-primary">Поиск</button>
             </div>
+            </form>
         </div>
     </div>
 </nav>
