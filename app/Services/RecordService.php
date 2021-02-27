@@ -10,24 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class RecordService extends AbstractService {
     public function create(Request $request): Model {
+
         $record = parent::create($request);
         // связанная таблица
         $this->createUserRecord(
-            $record,
-            User::query()->findOrFail(Auth::id())
+            $record->id,
+            $request->all()['user_id']
         );
 
         return $record;
     }
 
-    public function search(Request $request) {
-
-    }
-
-    private function createUserRecord($record, $user): bool {
+    private function createUserRecord($recordId, $userId): bool {
         return DB::table('user_records')->insert([
-            "user_id" => $user->id,
-            "record_id" => $record->id
+            "user_id" => $userId,
+            "record_id" => $recordId
         ]);
     }
 }

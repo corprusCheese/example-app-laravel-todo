@@ -47,3 +47,24 @@ $("#changePhoto").change( function () {
         reader.readAsDataURL($input.prop('files')[0]);
     }
 })
+
+$('#clickCreateRecord').click((event) => {
+
+    let data = {
+        'text': $("#text").val(),
+        'user_id': $("#user").data('id')
+    }
+    $.ajax({
+        url: $("#clickCreateRecord").data('href'),
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(data), // access in body,
+        success: function () {
+            //loadImgToServer()
+            //window.location = window.location.href.split("?")[0];
+        },
+        error: function (error) {
+            document.getElementById('clickSubmit').removeAttribute('disabled');
+        }
+    })
+})

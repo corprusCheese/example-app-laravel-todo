@@ -1959,6 +1959,25 @@ $("#changePhoto").change(function () {
     reader.readAsDataURL($input.prop('files')[0]);
   }
 });
+$('#clickCreateRecord').click(function (event) {
+  var data = {
+    'text': $("#text").val(),
+    'user_id': $("#user").data('id')
+  };
+  $.ajax({
+    url: $("#clickCreateRecord").data('href'),
+    type: "POST",
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    // access in body,
+    success: function success() {//loadImgToServer()
+      //window.location = window.location.href.split("?")[0];
+    },
+    error: function error(_error2) {
+      document.getElementById('clickSubmit').removeAttribute('disabled');
+    }
+  });
+});
 
 /***/ }),
 

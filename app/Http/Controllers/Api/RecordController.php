@@ -8,5 +8,4 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 class RecordController extends ApiController
 {
-
 }
