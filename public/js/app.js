@@ -1970,8 +1970,9 @@ $('#clickCreateRecord').click(function (event) {
     contentType: 'application/json',
     data: JSON.stringify(data),
     // access in body,
-    success: function success() {//loadImgToServer()
-      //window.location = window.location.href.split("?")[0];
+    success: function success() {
+      //loadImgToServer()
+      window.location = "/records";
     },
     error: function error(_error2) {
       document.getElementById('clickSubmit').removeAttribute('disabled');

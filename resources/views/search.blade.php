@@ -15,7 +15,7 @@
                                     <label class="col-md-4 col-form-label text-md-right"></label>
 
                                     <div class="col-md-6">
-                                        <img width="150" height="150" class="mb-3" src="{{$user->photo}}">
+                                        <img width="150" height="150" class="mb-3" src="{{'storage/images/'.$user->photo}}">
                                     </div>
                                 </div>
                             @endif
