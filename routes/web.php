@@ -39,6 +39,11 @@ Route::get('/records', [RecordsController::class, 'index'])->name('records');
 
 Route::get('/records/create', [RecordsController::class, 'create'])->name('records.create');
 
+Route::get('/records/{id}/view', [RecordsController::class, 'view'])
+    ->name('records.view')
+    ->middleware(['auth'])
+    ->where('id','[0-9]+');
+
 
 Route::get("/user/{id}/cabinet", CabinetController::class)
     ->name('cabinet')

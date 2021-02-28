@@ -26,4 +26,9 @@ class RecordRepository extends BaseRepository
     {
         return DB::table('user_records')->select()->where('user_id','=', $userId)->get();
     }
+
+    public function getUserByRecordId(int $recordId): string
+    {
+        return DB::table('user_records')->select()->where('record_id','=', $recordId)->value('user_id');
+    }
 }

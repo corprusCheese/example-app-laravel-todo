@@ -24,7 +24,10 @@ class RecordsController extends Controller
         return view('recordscreate');
     }
 
-    public function update($id) {
+    public function view($id, RecordRepository $repository) {
         // с редактированием
+        $record = $repository->getById($id);
+        $userRecord = $repository->getUserByRecordId($id);
+        return view('recordsview', ["record"=>$record, 'userRecord'=>$userRecord]);
     }
 }

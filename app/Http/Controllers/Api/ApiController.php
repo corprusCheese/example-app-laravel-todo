@@ -36,7 +36,7 @@ class ApiController extends Controller {
         return response()->json($this->repository->getById($id));
     }
 
-    public function delete($id): JsonResponse
+    public function destroy($id): JsonResponse
     {
         return response()->json($this->service->delete($id));
     }

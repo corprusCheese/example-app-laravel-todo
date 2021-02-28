@@ -18,8 +18,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <a href="" class="btn btn-primary">Изменить запись</a>
-                                    <a href="" class="btn btn-link">Удалить запись</a>
+                                    <a href="{{route('records.view', ['id'=>$record->id] )}}" class="btn btn-primary">Изменить запись</a>
                                 </div>
                             </div>
                         </div>

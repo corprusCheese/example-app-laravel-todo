@@ -1974,9 +1974,42 @@ $('#clickCreateRecord').click(function (event) {
       //loadImgToServer()
       window.location = "/records";
     },
-    error: function error(_error2) {
-      document.getElementById('clickSubmit').removeAttribute('disabled');
-    }
+    error: function error(_error2) {}
+  });
+});
+$('#clickUpdateRecord').click(function (event) {
+  var data = {
+    'text': $("#text").val(),
+    'user_id': $("#user").data('id')
+  };
+  $.ajax({
+    url: $("#clickUpdateRecord").data('href'),
+    type: "PUT",
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    // access in body,
+    success: function success() {
+      //loadImgToServer()
+      window.location = "/records";
+    },
+    error: function error(_error3) {}
+  });
+});
+$('#clickDeleteRecord').click(function (event) {
+  var data = {
+    'text': $("#text").val(),
+    'user_id': $("#user").data('id')
+  };
+  $.ajax({
+    url: $("#clickDeleteRecord").data('href'),
+    type: "DELETE",
+    contentType: 'application/json',
+    data: JSON.stringify(data),
+    // access in body,
+    success: function success() {
+      window.location = "/records";
+    },
+    error: function error(_error4) {}
   });
 });
 

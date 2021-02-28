@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Services\AbstractService;
 use App\Services\UserService;
 use App\Services\RecordService;
+use http\Env\Request;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -27,6 +28,7 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->when([RecordController::class])
             ->needs(AbstractService::class)
             ->give(RecordService::class);
+
     }
 
     /**
