@@ -18,16 +18,12 @@ class ApiController extends Controller {
         $this->service = $service;
     }
 
+    // через di в каждом апи контроллере будут свои репозитории сервисы
+
     public function index(): JsonResponse
     {
         // json что получает все у всех
         return response()->json($this->repository->get());
-    }
-
-    public function store(Request $request): JsonResponse
-    {
-        // после создания положить в базу
-        return response()->json($this->service->create($request), 201);
     }
 
     public function show($id): JsonResponse
@@ -41,4 +37,5 @@ class ApiController extends Controller {
         return response()->json($this->service->delete($id));
     }
 
+    // здесь объявлены методы, что не требуют Http\Request
 }

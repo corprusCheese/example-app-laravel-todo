@@ -8,7 +8,7 @@ use App\Http\Controllers\Invokable\CabinetController;
 use App\Http\Controllers\Invokable\HomeController;
 use App\Http\Controllers\Invokable\SearchController;
 use App\Http\Controllers\Invokable\WelcomeController;
-use App\Http\Controllers\RecordsController;
+use App\Http\Controllers\Pages\RecordsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

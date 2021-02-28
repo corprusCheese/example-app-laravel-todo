@@ -9,6 +9,8 @@
                 <div class="form-group row">
                     <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Кто отправляет') }}</label>
 
+                    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
                     <div class="col-md-6">
                         <input disabled id="user" type="text" class="form-control" name="text" value="{{ Auth::user()->name }}" data-id="{{Auth::user()->id}}">
                     </div>

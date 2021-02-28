@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\RecordController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Other\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('user', UserController::class);
 
-Route::resource('record', RecordController::class);
+Route::resource('record', RecordController::class)->middleware(['']);
 
 Route::middleware([])->get('/search/user', [UserController::class, 'search']);
 
-Route::middleware([])->any('/image/upload', [ImageController::class,'uploadPhoto'])->name('uploadPhoto');
+Route::middleware([])->post('/image/upload', [ImageController::class,'uploadPhoto'])->name('uploadPhoto');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Invokable;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -16,13 +17,13 @@ class SearchController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param UserService $service
+     * @param UserRepository $repository
      * @return Application|Factory|View|Response
      */
-    public function __invoke(Request $request, UserService $service)
+    public function __invoke(Request $request, UserRepository $repository)
     {
         //
-        $searchUsers = $service->search($request)->forPage(1, 5);
+        $searchUsers = $repository->search($request)->forPage(1, 5);
         return view('search', ["users"=>$searchUsers]);
     }
 }

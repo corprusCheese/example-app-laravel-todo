@@ -10,6 +10,14 @@ class RecordController extends ApiController
 {
     public function update(Request $request, $id): JsonResponse
     {
-        return response()->json($this->service->update($request, $id), $this->service->update($request, $id)? 200 : 404);
+        $updateResult = $this->service->update($request, $id);
+        return response()->json($updateResult, $updateResult? 200 : 404);
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        // после создания положить в базу
+        $createResult = $this->service->create($request);
+        return response()->json($createResult, $createResult ? 201 : 400);
     }
 }

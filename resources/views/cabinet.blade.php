@@ -7,11 +7,6 @@
                 <div class="card-header">{{ __('Личный кабинет') }}</div>
 
                 <div class="card-body">
-                    <form>
-                        @method('put')
-
-                        @csrf
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Фото') }}</label>
 
@@ -105,7 +100,6 @@
                                 @endif
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

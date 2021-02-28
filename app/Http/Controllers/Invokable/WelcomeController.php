@@ -21,10 +21,6 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        /*dd(Config::get("mail"));*/
-        /*Mail::send('welcome', [], function ($message) {
-            $message->to('example@gmail.com', 'example_name')->subject('Welcome!');
-        });*/
         return view('welcome');
     }
 }

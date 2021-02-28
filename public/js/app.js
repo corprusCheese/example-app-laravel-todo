@@ -1908,8 +1908,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions */ "./resources/js/functions.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 $("#clickSubmit").click(function (event) {
   var form = document.getElementById('password-form');
@@ -1924,7 +1922,7 @@ $("#clickSubmit").click(function (event) {
       "password_confirmation": $("#password-confirm").val(),
       "email": $("#email").val(),
       "description": $("#description").val(),
-      "photo": _typeof($("#changePhoto").prop('files')[0].name) !== undefined ? $("#changePhoto").prop('files')[0].name : ""
+      "photo": typeof $("#changePhoto").prop('files')[0] !== "undefined" ? $("#changePhoto").prop('files')[0].name : $("#photo").attr('src')
     };
 
     if (data['password'] == data['password_confirmation'] && data['password'] != "") {
@@ -1936,8 +1934,9 @@ $("#clickSubmit").click(function (event) {
         data: JSON.stringify(data),
         // access in body,
         success: function success() {
-          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.loadImgToServer)();
-          window.location = window.location.href.split("?")[0];
+          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.loadImgToServer)().then(function () {
+            window.location = window.location.href.split("?")[0];
+          });
         },
         error: function error(_error) {
           document.getElementById('clickSubmit').removeAttribute('disabled');
@@ -2030,7 +2029,7 @@ function loadImgToServer() {
   var $input = $("#changePhoto");
   var fd = new FormData();
   fd.append('img', $input.prop('files')[0]);
-  $.ajax({
+  return $.ajax({
     url: $("#changePhoto").data('href'),
     data: fd,
     processData: false,

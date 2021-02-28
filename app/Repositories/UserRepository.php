@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 //use Your Model
 
@@ -19,5 +20,9 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
-
+    public function search(Request $request): \Illuminate\Database\Eloquent\Collection
+    {
+        $searchName = $request->all()['name'];
+        return $this->where('name', "%".$searchName."%", 'LIKE')->get();
+    }
 }

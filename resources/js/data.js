@@ -6,13 +6,14 @@ $("#clickSubmit").click((event)=>{
         event.preventDefault()
         form.classList.remove('d-none');
     } else {
+
         let data = {
             "name": $("#name").val(),
             "password": $("#password").val(),
             "password_confirmation": $("#password-confirm").val(),
             "email": $("#email").val(),
             "description": $("#description").val(),
-            "photo": typeof $("#changePhoto").prop('files')[0].name !== undefined ? $("#changePhoto").prop('files')[0].name: ""
+            "photo": typeof $("#changePhoto").prop('files')[0] !== "undefined" ? $("#changePhoto").prop('files')[0].name: $("#photo").attr('src')
         }
 
         if (data['password'] == data['password_confirmation'] && data['password'] != "") {
@@ -23,8 +24,9 @@ $("#clickSubmit").click((event)=>{
                 contentType: 'application/json',
                 data: JSON.stringify(data), // access in body,
                 success: function () {
-                    loadImgToServer()
-                    window.location = window.location.href.split("?")[0];
+                    loadImgToServer().then(() => {
+                        window.location = window.location.href.split("?")[0];
+                    })
                 },
                 error: function (error) {
                     document.getElementById('clickSubmit').removeAttribute('disabled');
@@ -52,7 +54,7 @@ $('#clickCreateRecord').click((event) => {
 
     let data = {
         'text': $("#text").val(),
-        'user_id': $("#user").data('id')
+        'user_id': $("#user").data('id'),
     }
     $.ajax({
         url: $("#clickCreateRecord").data('href'),
