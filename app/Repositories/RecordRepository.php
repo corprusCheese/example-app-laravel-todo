@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Record;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -24,22 +25,14 @@ class RecordRepository extends BaseRepository
         return Record::class;
     }
 
-    public function getAllFromUserRecordsByUserId(int $userId): Collection
+    public function getUserIdByRecordId(int $recordId) :string
     {
-        return DB::table('user_records')->select()->where('user_id','=', $userId)->get();
+        return Record::find($recordId)->users()->get()->all()[0]->id;
     }
 
-    public function getUserByRecordId(int $recordId): string
+    public function getRecordsByUserId(int $userId): array
     {
-        return DB::table('user_records')->select()->where('record_id','=', $recordId)->value('user_id');
-    }
-
-    public function getUserRecordsByUserId(int $userId): array
-    {
-        $userRecords = $this->getAllFromUserRecordsByUserId($userId)->all();
-        $recordIds = array_column($userRecords,'record_id');
-
-        return $this->whereIn('id',$recordIds)->get()->all();
+        return User::find($userId)->records()->get()->all();
     }
 
     public function search(Request $request): \Illuminate\Database\Eloquent\Collection

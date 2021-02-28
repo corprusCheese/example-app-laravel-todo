@@ -55,6 +55,7 @@ $("#changePhoto").change( function () {
 
 $('#clickCreateRecord').click((event) => {
 
+    document.getElementById('clickCreateRecord').setAttribute('disabled', "disabled");
     let data = {
         'text': $("#text").val(),
         'user_id': $("#user").data('id'),
@@ -68,7 +69,10 @@ $('#clickCreateRecord').click((event) => {
             //loadImgToServer()
             window.location = "/records"
         },
-        error: function (error) {}
+        error: function (error) {
+            alert("Ошибка сервера")
+            enableButtonAndPrevent(event, 'clickCreateRecord')
+        }
     })
 })
 

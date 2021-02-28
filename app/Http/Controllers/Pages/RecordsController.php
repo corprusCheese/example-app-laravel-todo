@@ -22,7 +22,7 @@ class RecordsController extends Controller
 
     public function index()
     {
-        $records = $this->repository->getUserRecordsByUserId(Auth::user()->id);
+        $records = $this->repository->getRecordsByUserId(Auth::user()->id);
 
         // выдает страницу с записями
         return view('record.records', ["records" => $records]);
@@ -37,7 +37,7 @@ class RecordsController extends Controller
     public function view($id)
     {
         $record = $this->repository->getById($id);
-        $userRecord = $this->repository->getUserByRecordId($id);
+        $userRecord = $this->repository->getUserIdByRecordId($id);
 
         // с редактированием
         return view('record.view', ["record" => $record, 'userRecord' => $userRecord]);
@@ -45,7 +45,7 @@ class RecordsController extends Controller
 
     public function indexByUserId($id)
     {
-        $records = $this->repository->getUserRecordsByUserId($id);
+        $records = $this->repository->getRecordsByUserId($id);
 
         // выдает страницу с записями
         return view('record.records_user', ["records" => $records]);

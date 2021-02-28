@@ -20,7 +20,7 @@
                             <textarea id="text" type="text" class="form-control" name="text">{{$record->text}}</textarea>
                         </div>
                     </div>
-                    @if(\Illuminate\Support\Facades\Auth::id() == $userRecord)
+                    @if(!empty($userRecord) && \Illuminate\Support\Facades\Auth::id() == $userRecord)
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button class="btn btn-primary" id="clickUpdateRecord" data-href="{{route('record.update', ['record'=> $record->id])}}">

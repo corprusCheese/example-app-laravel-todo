@@ -1963,6 +1963,7 @@ $("#changePhoto").change(function () {
   }
 });
 $('#clickCreateRecord').click(function (event) {
+  document.getElementById('clickCreateRecord').setAttribute('disabled', "disabled");
   var data = {
     'text': $("#text").val(),
     'user_id': $("#user").data('id')
@@ -1977,7 +1978,10 @@ $('#clickCreateRecord').click(function (event) {
       //loadImgToServer()
       window.location = "/records";
     },
-    error: function error(_error2) {}
+    error: function error(_error2) {
+      alert("Ошибка сервера");
+      (0,_functions__WEBPACK_IMPORTED_MODULE_0__.enableButtonAndPrevent)(event, 'clickCreateRecord');
+    }
   });
 });
 $('#clickUpdateRecord').click(function (event) {

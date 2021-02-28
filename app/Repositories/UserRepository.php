@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 //use Your Model
 
@@ -20,9 +21,9 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
-    public function search(Request $request): \Illuminate\Database\Eloquent\Collection
+    public function search(Request $request): \Illuminate\Support\Collection
     {
         $searchName = $request->all()['name'];
-        return $this->where('name', "%".$searchName."%", 'LIKE')->get();
+        return $this->where('name', trim(strtolower("%".$searchName."%")), 'LIKE')->get();
     }
 }

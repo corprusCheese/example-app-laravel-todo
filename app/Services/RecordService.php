@@ -30,7 +30,7 @@ class RecordService extends AbstractService
 
     private function createUserRecord($recordId, $userId): bool
     {
-        return DB::table('user_records')->insert([
+        return DB::table('record_user')->insert([
             "user_id" => $userId,
             "record_id" => $recordId
         ]);
@@ -38,7 +38,7 @@ class RecordService extends AbstractService
 
     private function deleteUserRecord($recordId): bool
     {
-        return DB::table('user_records')->where(
+        return DB::table('record_user')->where(
             "record_id", "=", $recordId
         )->delete();
     }

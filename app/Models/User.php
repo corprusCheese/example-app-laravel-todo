@@ -36,7 +36,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /*public function record(): BelongsTo {
-        return $this->belongsTo('App/Models/Record', );
-    }*/
+    public function records()
+    {
+        return $this->belongsToMany(Record::class);
+    }
 }

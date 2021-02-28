@@ -18,4 +18,7 @@ class Record extends Model
         'text'
     ];
 
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
 }
