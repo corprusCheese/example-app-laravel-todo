@@ -1922,7 +1922,7 @@ $("#clickSubmit").click(function (event) {
       "password_confirmation": $("#password-confirm").val(),
       "email": $("#email").val(),
       "description": $("#description").val(),
-      "photo": typeof $("#changePhoto").prop('files')[0] !== "undefined" ? $("#changePhoto").prop('files')[0].name : $("#photo").attr('src')
+      "photo": typeof $("#changePhoto").prop('files')[0] !== "undefined" ? $("#changePhoto").prop('files')[0].name : $("#photo").attr('data-src')
     };
 
     if (data['password'] == data['password_confirmation'] && data['password'] != "") {
@@ -1934,14 +1934,18 @@ $("#clickSubmit").click(function (event) {
         data: JSON.stringify(data),
         // access in body,
         success: function success() {
-          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.loadImgToServer)().then(function () {
+          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.loadImgToServer)($("#changePhoto")).then(function () {
             window.location = window.location.href.split("?")[0];
           });
         },
         error: function error(_error) {
-          document.getElementById('clickSubmit').removeAttribute('disabled');
+          alert("Введён неверный пароль");
+          (0,_functions__WEBPACK_IMPORTED_MODULE_0__.enableButtonAndPrevent)(event, 'clickSubmit');
         }
       });
+    } else {
+      alert("Неправильно введён пароль");
+      (0,_functions__WEBPACK_IMPORTED_MODULE_0__.enableButtonAndPrevent)(event, 'clickSubmit');
     }
   }
 });
@@ -2023,14 +2027,14 @@ $('#clickDeleteRecord').click(function (event) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "loadImgToServer": () => /* binding */ loadImgToServer
+/* harmony export */   "loadImgToServer": () => /* binding */ loadImgToServer,
+/* harmony export */   "enableButtonAndPrevent": () => /* binding */ enableButtonAndPrevent
 /* harmony export */ });
-function loadImgToServer() {
-  var $input = $("#changePhoto");
+function loadImgToServer($input) {
   var fd = new FormData();
   fd.append('img', $input.prop('files')[0]);
   return $.ajax({
-    url: $("#changePhoto").data('href'),
+    url: $input.data('href'),
     data: fd,
     processData: false,
     contentType: false,
@@ -2039,6 +2043,10 @@ function loadImgToServer() {
       console.log(data);
     }
   });
+}
+function enableButtonAndPrevent(event, buttonId) {
+  document.getElementById(buttonId).removeAttribute('disabled');
+  event.preventDefault();
 }
 
 /***/ }),

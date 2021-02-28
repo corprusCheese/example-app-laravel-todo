@@ -5,13 +5,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Личный кабинет') }}</div>
-
+                <form>
                 <div class="card-body">
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Фото') }}</label>
 
                             <div class="col-md-6">
-                                <img src="{{ asset($cabinetUser->photo?"storage/images/".$cabinetUser->photo:"storage/images/guest-user.jpg")}}" width="200" height="200" id="photo">
+                                <img data-src="{{$cabinetUser->photo?:""}}" src="{{ asset($cabinetUser->photo?"storage/images/".$cabinetUser->photo:"storage/images/guest-user.jpg")}}" width="200" height="200" id="photo">
                             </div>
 
                             <label for="changePhoto" class="btn btn-link" style="margin: auto">
@@ -90,7 +90,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="clickSubmit" data-href="{{route('user.update', $cabinetUser->id)}}">
+                                <button class="btn btn-primary" id="clickSubmit" data-href="{{route('user.update', $cabinetUser->id)}}">
                                     {{ __('Изменить данные') }}
                                 </button>
                                 @if (Route::has('password.request'))
@@ -101,6 +101,7 @@
                             </div>
                         </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>

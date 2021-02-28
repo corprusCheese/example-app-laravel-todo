@@ -1,9 +1,8 @@
-export function loadImgToServer() {
-    var $input = $("#changePhoto");
-    var fd = new FormData;
+export function loadImgToServer($input) {
+    let fd = new FormData;
     fd.append('img', $input.prop('files')[0]);
     return $.ajax({
-        url: $("#changePhoto").data('href'),
+        url: $input.data('href'),
         data: fd,
         processData: false,
         contentType: false,
@@ -12,4 +11,9 @@ export function loadImgToServer() {
             console.log(data);
         }
     });
+}
+
+export function enableButtonAndPrevent(event, buttonId) {
+    document.getElementById(buttonId).removeAttribute('disabled');
+    event.preventDefault();
 }

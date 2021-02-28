@@ -14,6 +14,8 @@ class UserService extends AbstractService {
     public function update(Request $request, $id): ?User
     {
         // обновить
+        $result = null;
+
         if ($request->validated()) {
             /** @var User $item */
             $item = $this->repository->getById($id);
@@ -21,10 +23,10 @@ class UserService extends AbstractService {
                 $data = $request->all();
                 $data['password'] = Hash::make($request['password']);
                 $item->update($data);
+                $result = $item;
             }
-            return $item;
         }
 
-        return null;
+        return $result;
     }
 }

@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->except(['create', 'edit']);
 
-Route::resource('record', RecordController::class)->middleware(['']);
+Route::resource('record', RecordController::class)->except(['create', 'edit']);
 
 Route::middleware([])->get('/search/user', [UserController::class, 'search']);
 
