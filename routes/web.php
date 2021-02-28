@@ -37,6 +37,11 @@ Route::get('/home', HomeController::class)->name('home');
 
 Route::get('/records', [RecordsController::class, 'index'])->name('records');
 
+Route::get('user/{id}/records', [RecordsController::class, 'indexByUserId'])
+    ->name('user.records')
+    ->where('id', '[0-9]+');;
+
+
 Route::get('/records/create', [RecordsController::class, 'create'])->name('records.create');
 
 Route::get('/records/{id}/view', [RecordsController::class, 'view'])

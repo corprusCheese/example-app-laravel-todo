@@ -31,6 +31,11 @@
                                     <input disabled value="{{$user->email}}" type="text" class="form-control">
                                 </div>
                             </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                <a href="{{route('user.records',['id'=>$user->id])}}" class="btn btn-secondary">Посмотреть записи</a>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

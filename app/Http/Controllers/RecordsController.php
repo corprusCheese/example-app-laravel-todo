@@ -30,4 +30,13 @@ class RecordsController extends Controller
         $userRecord = $repository->getUserByRecordId($id);
         return view('recordsview', ["record"=>$record, 'userRecord'=>$userRecord]);
     }
+
+    public function indexByUserId(Request $request, $id, RecordRepository $repository) {
+        $userRecords = $repository->getUserRecords($id)->all();
+        $recordIds = array_column($userRecords,'record_id');
+        $records = $repository->whereIn('id',$recordIds)->get()->all();
+
+        // выдает страницу с записями
+        return view('userrecords', ["records"=>$records]);
+    }
 }
